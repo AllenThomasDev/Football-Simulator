@@ -6,7 +6,8 @@ import match as m
 
 pl=l.League()
 # # pl.showLeague()
-pl.simWeek()
-pl.showStandings()
-pl.simLeague()
+for _ in range(38):
+    pl.simWeek()
+    pl.showStandings()
+print('Final Standings are -')
 pl.showStandings()
