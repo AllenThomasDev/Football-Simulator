@@ -100,6 +100,7 @@ class League:
     def simLeague(self):
         while self.week<len(self.schedule):
             self.simWeek()
+            self.showStandings()
         pass
 
     

@@ -17,9 +17,6 @@ while n not in ['1','2','3','4','5']:
     if n not in ['1','2','3','4','5']:
         print('Enter a Valid input')
 pl=l.League(int(n))
-# pl.showLeague()
-for _ in range(38):
-    pl.simWeek()
-    pl.showStandings()
+pl.simLeague()
 print('Final Standings are -')
-# pl.showStandings()
+pl.showStandings()
