@@ -1,0 +1,15 @@
+/*.csv
+
+/*.json
+
+.vscode/
+
+__pycache__/
+
+data/
+
+disrtibutionviz.py
+
+*.ipynb
+
+hello.py
