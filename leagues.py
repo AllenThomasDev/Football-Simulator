@@ -13,8 +13,8 @@ class League:
     def __init__(self,option):
         self.players={}
         self.teams={}
-        self.leaguename=league_options[League.country[int(option)]]['name']
-        self.names=league_options[League.country[int(option)]]['teams']  #self.names=names of the teams . will be changed soon 13/06/2020
+        self.leaguename=league_options[League.country[option]]['name']
+        self.names=league_options[League.country[option]]['teams']  #self.names=names of the teams . will be changed soon 13/06/2020
         self.setTeams()
         self.setPlayers()
         self.schedule=self.create_balanced_round_robin(self.names)
