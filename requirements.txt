@@ -1,0 +1,16 @@
+astroid==2.3.3
+certifi==2020.4.5.1
+colorama==0.4.3
+fuzzywuzzy==0.18.0
+isort==4.3.21
+lazy-object-proxy==1.4.3
+mccabe==0.6.1
+numpy==1.18.5
+pandas==1.0.4
+pylint==2.4.4
+python-dateutil==2.8.1
+pytz==2020.1
+six==1.15.0
+tabulate==0.8.7
+wincertstore==0.2
+wrapt==1.11.2

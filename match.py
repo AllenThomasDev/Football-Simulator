@@ -41,8 +41,8 @@ class Match:
       hdf=(self.home_side.defence**2*self.home_side.midfield)/(self.away_side.attack**2*self.away_side.midfield)
       adf=(self.away_side.defence**2*self.away_side.midfield)/(self.home_side.attack**2*self.home_side.midfield)
       for minute in range(100):
-        self.odds[minute]['Home']['Events']['Attempt']=self.odds[minute]['Home']['Events']['Attempt']/(adf)
-        self.odds[minute]['Away']['Events']['Attempt']=self.odds[minute]['Away']['Events']['Attempt']/(hdf)
+        self.odds[minute]['Home']['Events']['Attempt']=self.odds[minute]['Home']['Events']['Attempt']/(adf**2.33)
+        self.odds[minute]['Away']['Events']['Attempt']=self.odds[minute]['Away']['Events']['Attempt']/(hdf**2.33)
      
       pass
 
