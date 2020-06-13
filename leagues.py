@@ -9,23 +9,22 @@ from itertools import permutations
 import copy
 import pprint
 class League:
-    teamlist = list(ratings.keys())
-    name='English Premier League'
-    def __init__(self):
+    country={1:'spain',2:'england',3:'germany',4:'italy',5:'france'}
+    def __init__(self,option):
         self.players={}
         self.teams={}
-        self.leaguename=League.name
-        self.names=League.teamlist
+        self.leaguename=league_options[League.country[int(option)]]['name']
+        self.names=league_options[League.country[int(option)]]['teams']  #self.names=names of the teams . will be changed soon 13/06/2020
         self.setTeams()
         self.setPlayers()
-        self.schedule=self.create_balanced_round_robin(League.teamlist)
+        self.schedule=self.create_balanced_round_robin(self.names)
         self.week=0
         self.standings=self.initTable()
 
 
     def initTable(self):
         table=pd.DataFrame(columns=['Club','Matches Played','Wins','Draws','Losses','Points','GF','GA','GD'])
-        for team in League.teamlist:
+        for team in self.names:
             row=pd.DataFrame([[team,0,0,0,0,0,0,0,0]],columns=['Club','Matches Played','Wins','Draws','Losses','Points','GF','GA','GD'])
             table=table.append(row)
         table=table.reset_index(drop=True)
@@ -38,7 +37,7 @@ class League:
 
 
     def setTeams(self):
-        for team in League.teamlist:
+        for team in self.names:
             t=Team(team)
             self.teams[team]=t
     
