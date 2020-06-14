@@ -33,7 +33,7 @@ class League:
 
 
     def showStandings(self):
-        print(tabulate(self.standings,headers=self.standings.columns))
+        print(tabulate(self.standings,headers=self.standings.columns,tablefmt='github'))
 
 
     def setTeams(self):
