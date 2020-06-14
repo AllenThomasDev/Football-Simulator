@@ -2,6 +2,19 @@
 
 You can use this project to simulate different football leagues from across the world using FIFA 20 stats.
 
+This is how the output will look-
+|    | Club          |   Matches Played |   Wins |   Draws |   Losses |   Points |   GF |   GA |   GD |
+|----|---------------|------------------|--------|---------|----------|----------|------|------|------|
+|  1 | Juventus      |               38 |     31 |       1 |        6 |       94 |  113 |   32 |   81 |
+|  2 | Napoli        |               38 |     26 |       6 |        6 |       84 |   83 |   31 |   52 |
+|  3 | Inter         |               38 |     26 |       5 |        7 |       83 |   93 |   45 |   48 |
+|  4 | Milan         |               38 |     23 |      10 |        5 |       79 |   68 |   25 |   43 |
+|  5 | Lazio         |               38 |     20 |       7 |       11 |       67 |   82 |   57 |   25 |
+|  6 | Torino        |               38 |     17 |       7 |       14 |       58 |   59 |   45 |   14 |
+....
+
+___ 
+
 I have used a probalistic approach to simulate the events of the match-
 For every minute in a match, the probability of a particular event occurring was calculated. The probabilities are then scaled according to the strengths of the teams and the match is simulated minute by minute.
 
