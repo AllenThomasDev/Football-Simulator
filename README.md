@@ -71,6 +71,12 @@ league_options={'spain': {'name': 'La Liga Santander',
 
 Currently simMatch() will simulate the match in its entirety and update the league table. But there are functions that can be used to see the timeline of a match as it happens. In future builds, the user will be able to take charge of a particular team and see the events of any game that he is involved in live. 
 
+
+```
+You will need to install packages specified in requirements.txt, you can do this by -
+pip install -r requirements.txt
+```
+
 Please feel free to play around with the code and let me know if you find any issues or you need some help with certain functions
 
 You can contact me at allen.thomas.dev@gmail.com
