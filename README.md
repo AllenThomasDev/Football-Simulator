@@ -50,7 +50,7 @@ Top 5 Leagues are natively supported -
 * Seria A
 * Bundesliga 
 * Ligue 1
-#### Note: You can set up your own league by editing teams in odds.py and adding an option in main.py. Ensure that you use the correct name. eg. 'Man Utd' will not work , you will have to use 'Manchester United' because that is how it is stored. To see the list of valid team names, you can add 
+#### Note: You can set up your own league by editing teams in odds.py and adding an option in main.py. Ensure that you use the correct name. eg. 'Man Utd' will not work , you will have to use 'Manchester United' because that is how it is stored. To see the list of valid team names, you can add the following in odds.py
 ```python
 print(df['club'].unique())
 #to playerlist.py and run it seperately
@@ -89,6 +89,9 @@ Currently simMatch() will simulate the match in its entirety and update the leag
 You will need to install packages specified in requirements.txt, you can do this by -
 pip install -r requirements.txt
 ```
+# The following is a sample output
+
+![Screenshot (2)](https://user-images.githubusercontent.com/55048030/84644685-1b96c700-af1d-11ea-81af-6ea056cbdea5.png)
 
 Please feel free to play around with the code and let me know if you find any issues or you need some help with certain functions
 
