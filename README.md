@@ -2,7 +2,7 @@
 
 You can use this project to simulate different football leagues from across the world using FIFA 20 stats.
 
-This is how the output will look-
+When you run main.py, matches between all the teams will be simulated week by week and the final output will look similar to this - 
 |    | Club          |   Matches Played |   Wins |   Draws |   Losses |   Points |   GF |   GA |   GD |
 |----|---------------|------------------|--------|---------|----------|----------|------|------|------|
 |  1 | Juventus      |               38 |     31 |       1 |        6 |       94 |  113 |   32 |   81 |
@@ -41,7 +41,7 @@ eg. The probabilities of different events for the 72nd minute -
 ```
 
 > Such probabilities have been calculated for each minute from 0 to 100. 
-> #### One or more events may occur in a single minute
+> One or more events may occur in a single minute
 As of 14/06/2020 
 
 Top 5 Leagues are natively supported -
