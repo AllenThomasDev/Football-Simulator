@@ -7,7 +7,7 @@ class Event:
     self.event=event
     self.side=side
     self.minute=minute
-    self.players=None
+    self.players=players
     
 
   def setSides(self,home_side,away_side):
@@ -15,7 +15,11 @@ class Event:
     self.reverse={home_side:away_side,away_side:home_side}
 
   
-  def setPlayer(self):
+  def setPlayer(self,eventslist):
+    player=random.choice(list(eventslist[0].side.squad.keys()))
+    for e in eventslist:
+      e.players=player
+    return eventslist
     pass
 
 
@@ -37,6 +41,7 @@ class Event:
         goal=random.choices(['Saved','Goal'],goalodds)[0]
         self.event=goal
         l.append(Event(self.event,self.side,self.minute))
+      l=self.setPlayer(l)
       return l
     elif self.event=='Foul':
       flist=[]                       #Foul handling below
@@ -49,9 +54,11 @@ class Event:
       card=random.choices(['Yellow card','Red card','No card'],cardodds)[0]
       if card != 'No card':
         flist.append(Event(card,self.side,self.minute))
+      flist=self.setPlayer(flist)
       return flist
     else:
       l=[]
       l.append(Event(self.event,self.side,self.minute))
+      l=self.setPlayer(l)
       return l
 
