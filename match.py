@@ -124,5 +124,5 @@ class Match:
 
 
     def showEvent(self,e):
-      print(str(e.minute)+"'", e.side.team_name,e.event)
+      print(str(e.minute)+"'", e.side.team_name,e.event,e.players)
       
