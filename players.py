@@ -1,6 +1,7 @@
 from names import *
 import random
 import numpy as np
+from tabulate import tabulate
 class Player:
     facestats=['short_name','nationality', 'overall', 'player_positions','team_position', 'pace','shooting', 'passing', 'dribbling', 'defending', 'physic']
     def __init__(self,row):
@@ -8,7 +9,12 @@ class Player:
         self.stats['team_position']='Reserves'
         self.setPosition()
 
-        
+    def showPlayer(self):
+        temp=pd.DataFrame(self.stats,index=[0])
+        temp=temp.T
+        temp=temp.dropna()
+        print(tabulate(temp))
+        pass
 
     def setPosition(self):
         if 'B' in self.stats['player_positions'].split(",")[0]:
