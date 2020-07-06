@@ -2,10 +2,12 @@ from names import *
 import random
 import numpy as np
 class Player:
+    facestats=['short_name','nationality', 'overall', 'player_positions','team_position', 'pace','shooting', 'passing', 'dribbling', 'defending', 'physic']
     def __init__(self,row):
         self.stats=row.to_dict()
         self.stats['team_position']='Reserves'
         self.setPosition()
+
         
 
     def setPosition(self):

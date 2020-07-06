@@ -44,11 +44,10 @@ class Team:
     def showPlayers(self,player_dict=None):
         if player_dict==None:
             player_dict=self.players
-        pl=[]
         df=pd.DataFrame()
         i=1
         for player in player_dict.values():
-            temp=pd.DataFrame.from_records(player.__dict__,index=[i],columns=Team.attlist)
+            temp=pd.DataFrame(player.stats,index=[i],columns=p.Player.facestats)
             df=df.append(temp)
             i+=1
         print(tabulate(df,headers=[c.capitalize() for c in df.columns],tablefmt='psql',stralign='left'))
@@ -75,7 +74,6 @@ class Team:
         self.showPlayers()
         self.showPlayers(player_dict=self.squad)
         self.showStats()
-        self.showManager()
 
 
     def showStats(self):
@@ -108,8 +106,9 @@ class Team:
         self.squad=squad
 
     def Substitutes(self):
-        subs=[x for x in self.players.keys() if x not in self.squad.keys()][:7]
-        for player in subs:
+        subs=[x for x in self.players.keys() if x not in self.squad.keys()]
+        subs.sort(key = lambda x:self.players[x].stats['overall'],reverse=True)
+        for player in subs[:7]:
             self.players[player].stats['team_position']='Substitute'
             self.subs[player]=self.players[player]
         reserves = [r for r in self.players.items() if (r not in self.squad.items() and r not in self.subs.items())]

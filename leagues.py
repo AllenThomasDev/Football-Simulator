@@ -55,12 +55,10 @@ class League:
             if Partial_Ratio>90:
                 self.players[player].showPlayer()
 
-    def showPlayers(self,position=['striker','midfielder','defender','goalkeeper']):
+    def showPlayers(self):
         df=pd.DataFrame()
         for team in self.teams.values():
-            df=df.append(team.getPlayers(position=position))
-        df.columns=['Name','Position','Stats','IVs']
-        print(tabulate(df))
+            team.showPlayers(team.players)
 
     def setPlayers(self):
         for team in self.teams.values():
