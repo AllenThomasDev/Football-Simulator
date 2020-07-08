@@ -1,13 +1,15 @@
-from odds import odds
+from odds import odds as odds
 from odds import shot_outcome
+from odds import goal_distribution
 import random
+import match as m
 import numpy as np
 class Event:
-  def __init__(self,event,side,minute,players=None):
+  def __init__(self,event,side,minute,player=None):
     self.event=event
     self.side=side
     self.minute=minute
-    self.players=players
+    self.player=player
     
 
   def setSides(self,home_side,away_side):
@@ -16,9 +18,14 @@ class Event:
 
   
   def setPlayer(self,eventslist):
-    player=random.choice(list(eventslist[0].side.squad.keys()))
+    position=random.choices(['goalkeeper','defenders','midfielders','attackers'])[0]
+    if eventslist[0].event=='Attempt':
+      position=random.choices(['goalkeeper','defenders','midfielders','attackers'],list(goal_distribution.values()))[0]
+    players=list(eventslist[0].side.squad[position].values())
+    odds=[x.stats['shooting'] for x in players]
+    player=random.choices(players,odds)[0]
     for e in eventslist:
-      e.players=player
+      e.player=player
     return eventslist
     pass
 

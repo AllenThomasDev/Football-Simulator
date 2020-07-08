@@ -3409,3 +3409,5 @@ league_options={'spain': {'name': 'La Liga Santander',
    'Stade de Reims',
    'Dijon FCO',
    'Stade Brestois 29']}}
+
+goal_distribution={1: 0.0, 2: 0.13102119460500963, 3: 0.5144508670520231, 4: 0.35452793834296725}

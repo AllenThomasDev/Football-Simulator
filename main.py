@@ -18,4 +18,4 @@ while n not in ['1','2','3','4','5']:
     if n not in ['1','2','3','4','5']:
         print('Enter a Valid input')
 pl=l.League(int(n))
-pl.showPlayers()
+pl.simMatch('Manchester United','Manchester City')

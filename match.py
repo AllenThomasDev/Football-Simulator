@@ -72,7 +72,7 @@ class Match:
             self.trackEvents(e)
         else:
           self.trackEvents(e)
-        # self.showEvent(e)
+        self.showEvent(e)
         # time.sleep(0.01)
         self.matchevents.append(e)
     
@@ -124,5 +124,5 @@ class Match:
 
 
     def showEvent(self,e):
-      print(str(e.minute)+"'", e.side.team_name,e.event,e.players)
+      print(str(e.minute)+"'", e.side.team_name,e.event,e.player.stats['short_name'])
       

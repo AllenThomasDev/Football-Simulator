@@ -73,7 +73,7 @@ class League:
         home_team=self.teams[home_team_name]
         away_team=self.teams[away_team_name]
         match=m.Match(home_team,away_team)
-        # match.showResult()
+        match.showResult()
         self.updateTable(match)
         pass
 

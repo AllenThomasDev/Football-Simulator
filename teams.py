@@ -81,28 +81,33 @@ class Team:
         
     def playingSquad(self):
         squad={}
+        squad_attackers={}
+        squad_midfielders={}
+        squad_defenders={}
+        squad_gk={}
         attackers=list(self.attackers.values())
         attackers.sort(key = lambda x:x.stats['overall'],reverse=True)
         for player in attackers[0:self.manager.strikers]:
             player.stats['team_position']='Starter'
-            squad[player.stats['long_name']]=player
+            squad_attackers[player.stats['long_name']]=player
 
         midfielders=list(self.midfielders.values())
         midfielders.sort(key = lambda x:x.stats['overall'],reverse=True)
         for player in midfielders[0:self.manager.midfielders]:
             player.stats['team_position']='Starter'
-            squad[player.stats['long_name']]=player
+            squad_midfielders[player.stats['long_name']]=player
 
         defenders=list(self.defenders.values())
         defenders.sort(key = lambda x:x.stats['overall'],reverse=True)
         for player in defenders[0:self.manager.defenders]:
             player.stats['team_position']='Starter'
-            squad[player.stats['long_name']]=player
+            squad_defenders[player.stats['long_name']]=player
 
         goalkeepers=list(self.goalkeepers.values())
         goalkeepers.sort(key = lambda x:x.stats['overall'],reverse=True)
         goalkeepers[0].stats['team_position']='Starter'
-        squad[goalkeepers[0].stats['long_name']]=goalkeepers[0]
+        squad_gk[goalkeepers[0].stats['long_name']]=goalkeepers[0]
+        squad.update({'attackers':squad_attackers,'midfielders':squad_midfielders,'defenders':squad_defenders,'goalkeeper':squad_gk})
         self.squad=squad
 
     def Substitutes(self):
