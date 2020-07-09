@@ -72,8 +72,8 @@ class Team:
     def showTeam(self,player_dict=None,position=['striker','midfielder','defender','goalkeeper']):
         self.Substitutes()
         self.showPlayers()
-        self.showPlayers(player_dict=self.squad)
         self.showStats()
+        print(self.squad)
 
 
     def showStats(self):
@@ -107,7 +107,7 @@ class Team:
         goalkeepers.sort(key = lambda x:x.stats['overall'],reverse=True)
         goalkeepers[0].stats['team_position']='Starter'
         squad_gk[goalkeepers[0].stats['long_name']]=goalkeepers[0]
-        squad.update({'attackers':squad_attackers,'midfielders':squad_midfielders,'defenders':squad_defenders,'goalkeeper':squad_gk})
+        squad.update({'attackers':list(squad_attackers.values()),'midfielders':list(squad_midfielders.values()),'defenders':list(squad_defenders.values()),'goalkeeper':list(squad_gk.values())})
         self.squad=squad
 
     def Substitutes(self):

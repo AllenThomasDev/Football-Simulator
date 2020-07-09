@@ -19,13 +19,12 @@ class Event:
   
   def setPlayer(self,eventslist):
     position=random.choices(['goalkeeper','defenders','midfielders','attackers'])[0]
-    if eventslist[0].event=='Attempt':
-      position=random.choices(['goalkeeper','defenders','midfielders','attackers'],list(goal_distribution.values()))[0]
-    players=list(eventslist[0].side.squad[position].values())
-    odds=[x.stats['shooting'] for x in players]
-    player=random.choices(players,odds)[0]
+    players=list(eventslist[0].side.squad[position])
+    player=random.choices(players)[0]
     for e in eventslist:
       e.player=player
+      if e.event=='Saved':
+        e.player=e.side.squad['goalkeeper'][0]
     return eventslist
     pass
 
@@ -46,6 +45,8 @@ class Event:
         for g in list(shot_outcome['On target']['is_goal'].values()):
           goalodds.append(g)
         goal=random.choices(['Saved','Goal'],goalodds)[0]
+        if goal=='Saved':
+          self.side=self.reverse[self.side]
         self.event=goal
         l.append(Event(self.event,self.side,self.minute))
       l=self.setPlayer(l)
