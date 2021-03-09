@@ -1,5 +1,5 @@
 import players as p
-from names import gen_name
+from names import manager_names
 import numpy as np
 import random
 import pandas as pd
@@ -12,7 +12,7 @@ class Manager():
     sd=[5,5,5]
     def __init__(self):
         self.ivs=np.random.randint(1,6,3)
-        self.name=gen_name(self)
+        self.name=manager_names[random.randint(0,99)]
         self.set_stats()
         
     def set_stats(self):

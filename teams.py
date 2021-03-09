@@ -1,7 +1,6 @@
 import pprint as pp
 import players as p
 from manager import *
-from names import gen_name
 import numpy as np
 import random
 import pandas as pd
