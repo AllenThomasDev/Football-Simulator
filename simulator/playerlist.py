@@ -1,4 +1,4 @@
-import pickle as pickle
-import pandas as pd 
-df=pd.read_pickle('playerdata')
-# print(df['club'].unique())
+import pandas as pd
+
+
+df = pd.read_pickle('player_data')
