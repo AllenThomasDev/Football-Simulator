@@ -14,7 +14,6 @@ class League:
         self.players = {}
         self.teams = {}
         self.leaguename = sco.league_options[League.country[option]]['name']
-        # self.names=names of the teams . will be changed soon 13/06/2020
         self.names = sco.league_options[League.country[option]]['teams']
         self.setTeams()
         self.setPlayers()
