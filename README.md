@@ -2,7 +2,7 @@
 
 You can use this project to simulate different football leagues from across the world using FIFA 20 stats.
 
-When you run main.py, matches between all the teams will be simulated week by week and the final output will look similar to this - 
+When you run main.py, matches between all the teams will be simulated week by week and the final output will look similar to this -
 |    | Club          |   Matches Played |   Wins |   Draws |   Losses |   Points |   GF |   GA |   GD |
 |----|---------------|------------------|--------|---------|----------|----------|------|------|------|
 |  1 | Juventus      |               38 |     31 |       1 |        6 |       94 |  113 |   32 |   81 |
@@ -13,7 +13,7 @@ When you run main.py, matches between all the teams will be simulated week by we
 |  6 | Torino        |               38 |     17 |       7 |       14 |       58 |   59 |   45 |   14 |
 ....
 
-___ 
+___
 
 I have used a probalistic approach to simulate the events of the match-
 For every minute in a match, the probability of a particular event occurring was calculated. The probabilities are then scaled according to the strengths of the teams and the match is simulated minute by minute.
@@ -40,15 +40,15 @@ eg. The probabilities of different events for the 72nd minute -
       'Home': {'Events':{....}}}
 ```
 
-> Such probabilities have been calculated for each minute from 0 to 100. 
+> Such probabilities have been calculated for each minute from 0 to 100.
 > One or more events may occur in a single minute
-As of 14/06/2020 
+As of 14/06/2020
 
 Top 5 Leagues are natively supported -
-* English Premier League 
+* English Premier League
 * La Liga
 * Seria A
-* Bundesliga 
+* Bundesliga
 * Ligue 1
 #### Note: You can set up your own league by editing teams in odds.py and adding an option in main.py. Ensure that you use the correct name. eg. 'Man Utd' will not work , you will have to use 'Manchester United' because that is how it is stored. To see the list of valid team names, you can add the following in odds.py
 ```python
