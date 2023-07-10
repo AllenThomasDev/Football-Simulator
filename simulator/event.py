@@ -1,6 +1,7 @@
 import random
 import numpy as np
-from odds import odds, shot_outcome
+
+from simulator.constants.odds import odds, shot_outcome
 
 
 class Event:

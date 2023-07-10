@@ -1,8 +1,6 @@
 import pandas as pd
 from tabulate import tabulate
 
-from names import *
-
 
 class Player:
     facestats = [

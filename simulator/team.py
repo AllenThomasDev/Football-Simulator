@@ -1,10 +1,11 @@
-import players as p
-from manager import *
 import numpy as np
 import pandas as pd
-from playerlist import df
 from tabulate import tabulate
 
+import simulator.player as p
+from manager import *
+
+df_player_data = pd.read_pickle("simulator/resources/player_data")
 
 class Team:
     attlist = [
@@ -80,7 +81,7 @@ class Team:
         )
 
     def addPlayers(self):
-        tdf = df[df["club"] == self.team_name]
+        tdf = df_player_data[df_player_data["club"] == self.team_name]
         for index, row in tdf.iterrows():
             self.players[row["long_name"]] = p.Player(row)
 

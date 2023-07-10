@@ -2,8 +2,8 @@ import copy
 import random
 from tabulate import tabulate
 
-from odds import odds
-from events import *
+from simulator.constants.odds import odds
+from simulator.event import *
 
 
 class Match:

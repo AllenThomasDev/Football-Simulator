@@ -2,9 +2,9 @@ import copy
 import pandas as pd
 from fuzzywuzzy import fuzz
 
-import match as m
-from odds import *
-from teams import *
+import simulator.match as m
+from simulator.constants.odds import *
+from simulator.team import *
 
 
 class League:

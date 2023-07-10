@@ -1,6 +1,7 @@
 import random
 import numpy as np
-from names import manager_names
+
+from simulator.constants.managers import manager_names
 
 
 class Manager:
