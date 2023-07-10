@@ -50,7 +50,7 @@ class League:
                     "GD",
                 ],
             )
-            table = table.append(row)
+            table = pd.concat([table, row])
         table = table.reset_index(drop=True)
         table.index = table.index + 1
         return table
