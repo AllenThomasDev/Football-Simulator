@@ -1,3 +1,5 @@
+countries = {1: "spain", 2: "england", 3: "germany", 4: "italy", 5: "france"}
+
 leagues = {
     "spain": {
         "name": "La Liga Santander",
@@ -123,3 +125,15 @@ leagues = {
         ],
     },
 }
+
+league_table_columns = [
+    "Club",
+    "Matches Played",
+    "Wins",
+    "Draws",
+    "Losses",
+    "Points",
+    "GF",
+    "GA",
+    "GD",
+]

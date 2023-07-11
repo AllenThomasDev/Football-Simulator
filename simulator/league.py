@@ -1,106 +1,78 @@
-import copy
 import pandas as pd
-from fuzzywuzzy import fuzz
+from tabulate import tabulate
 
-import simulator.match as m
+from simulator.match import Match
+from simulator.team import Team
 import simulator.constants.leagues as scl
-from simulator.team import *
 
 
 class League:
-    country = {1: "spain", 2: "england", 3: "germany", 4: "italy", 5: "france"}
-
     def __init__(self, option):
+        self.week = 0
+        self.name = scl.leagues[scl.countries[option]]["name"]
         self.players = {}
         self.teams = {}
-        self.leaguename = scl.leagues[League.country[option]]["name"]
-        self.names = scl.leagues[League.country[option]]["teams"]
-        self.setTeams()
-        self.setPlayers()
-        self.schedule = self.create_balanced_round_robin(self.names)
-        self.week = 0
-        self.standings = self.initTable()
+        self.team_names = scl.leagues[scl.countries[option]]["teams"]
+        self.set_teams()
+        self.set_players()
+        self.schedule = self.create_balanced_round_robin(self.team_names)
+        self.standings = self.init_league_table()
 
-    def initTable(self):
-        table = pd.DataFrame(
-            columns=[
-                "Club",
-                "Matches Played",
-                "Wins",
-                "Draws",
-                "Losses",
-                "Points",
-                "GF",
-                "GA",
-                "GD",
-            ]
-        )
-        for team in self.names:
+    def set_teams(self):
+        for name in self.team_names:
+            team = Team(name)
+            self.teams[name] = team
+
+    def set_players(self):
+        for team in self.teams.values():
+            self.players.update(team.players)
+
+    def create_balanced_round_robin(self, teams):
+        """Create a schedule for the teams in the list and return it"""
+        schedule = []
+        if len(teams) % 2 == 1:
+            teams = teams + [None]
+
+        team_count = len(teams)
+        mid = team_count // 2
+
+        for _ in range(team_count - 1):
+            first_half = teams[:mid]
+            second_half = teams[mid:]
+            second_half.reverse()
+
+            round_schedule = [(t1, t2) for t1, t2 in zip(first_half, second_half)]
+            round_schedule += [(t2, t1) for t1, t2 in zip(second_half, first_half)]
+
+            schedule.append(round_schedule)
+
+            teams.insert(1, teams.pop())  # Rotate the list
+
+        return schedule
+
+    def init_league_table(self):
+        table = pd.DataFrame(columns=scl.league_table_columns)
+        for team in self.team_names:
             row = pd.DataFrame(
                 [[team, 0, 0, 0, 0, 0, 0, 0, 0]],
-                columns=[
-                    "Club",
-                    "Matches Played",
-                    "Wins",
-                    "Draws",
-                    "Losses",
-                    "Points",
-                    "GF",
-                    "GA",
-                    "GD",
-                ],
+                columns=scl.league_table_columns,
             )
             table = pd.concat([table, row])
         table = table.reset_index(drop=True)
         table.index = table.index + 1
         return table
 
-    def showStandings(self):
+    def show_league_table(self):
         print(
             tabulate(self.standings, headers=self.standings.columns, tablefmt="github")
         )
 
-    def setTeams(self):
-        for team in self.names:
-            t = Team(team)
-            self.teams[team] = t
-
-    def searchTeam(self):
-        query = input("\nEnter the name of the team you want to search\n")
-        for team in self.teams.keys():
-            Partial_Ratio = fuzz.partial_ratio(query.lower(), team.lower())
-            if Partial_Ratio > 90:
-                self.teams[team].showTeam()
-
-    def searchPlayer(self):
-        query = input("\nEnter the name of the player you want to search\n")
-        for player in self.players.keys():
-            Partial_Ratio = fuzz.partial_ratio(query.lower(), player.lower())
-            if Partial_Ratio > 90:
-                self.players[player].showPlayer()
-
-    def showPlayers(self):
-        df = pd.DataFrame()
-        for team in self.teams.values():
-            team.showPlayers(team.players)
-
-    def setPlayers(self):
-        for team in self.teams.values():
-            self.players.update(team.players)
-
-    def simMatch(self, home_team_name, away_team_name):
-        home_team = self.teams[home_team_name]
-        away_team = self.teams[away_team_name]
-        match = m.Match(home_team, away_team)
-        match.showResult()
-        self.updateTable(match)
-
-    def updateTable(self, match):
+    def update_league_table(self, match):
         (result, winner, loser) = match.Result()
         table = self.standings
-        winnergoals = match.stats[winner]["Goal"]
-        losergoals = match.stats[loser]["Goal"]
-        dif = winnergoals - losergoals
+        num_winner_goals = match.stats[winner]["Goal"]
+        num_loser_goals = match.stats[loser]["Goal"]
+        goal_difference = num_winner_goals - num_loser_goals
         if result == "Draw":
             for team in [winner, loser]:
                 table.loc[(table["Club"] == team.team_name)] += [
@@ -110,8 +82,8 @@ class League:
                     1,
                     0,
                     1,
-                    winnergoals,
-                    losergoals,
+                    num_winner_goals,
+                    num_loser_goals,
                     0,
                 ]
         else:
@@ -122,9 +94,9 @@ class League:
                 0,
                 0,
                 3,
-                winnergoals,
-                losergoals,
-                dif,
+                num_winner_goals,
+                num_loser_goals,
+                goal_difference,
             ]
             table.loc[(table["Club"] == loser.team_name)] += [
                 "",
@@ -133,52 +105,26 @@ class League:
                 0,
                 1,
                 0,
-                losergoals,
-                winnergoals,
-                -dif,
+                num_loser_goals,
+                num_winner_goals,
+                -goal_difference,
             ]
+        table.sort_values(by='Points', inplace=True, ascending=False)
+        table.reset_index(drop=True, inplace=True)
 
-    def simLeague(self):
-        while self.week < len(self.schedule):
-            self.simWeek()
-            self.showStandings()
+    def simulate_match(self, home_team_name, away_team_name):
+        home_team = self.teams[home_team_name]
+        away_team = self.teams[away_team_name]
+        match = Match(home_team, away_team)
+        match.showResult()
+        self.update_league_table(match)
 
-    def simWeek(self):
-        for h, a in self.schedule[self.week]:
-            self.simMatch(h, a)
+    def simulate_week(self):
+        for home_team, away_team in self.schedule[self.week]:
+            self.simulate_match(home_team, away_team)
         self.week += 1
 
-    def create_balanced_round_robin(self, teams):
-        """Create a schedule for the players in the list and return it"""
-        s = []
-        if len(teams) % 2 == 1:
-            teams = teams + [None]
-        # manipulate map (array of indexes for list) instead of list itself
-        # this takes advantage of even/odd indexes to determine home vs. away
-        n = len(teams)
-        map = list(range(n))
-        mid = n // 2
-        for i in range(n - 1):
-            l1 = map[:mid]
-            l2 = map[mid:]
-            l2.reverse()
-            round = []
-            for j in range(mid):
-                t1 = teams[l1[j]]
-                t2 = teams[l2[j]]
-                if j == 0 and i % 2 == 1:
-                    # flip the first match only, every other round
-                    # (this is because the first match always involves the last player in the list)
-                    round.append((t2, t1))
-                else:
-                    round.append((t1, t2))
-            s.append(round)
-            # rotate list by n/2, leaving last element at the end
-            map = map[mid:-1] + map[:mid] + map[-1:]
-        temp = copy.copy(s)
-        for item in temp:
-            l = []
-            for x in item:
-                l.append(x[::-1])
-            s.append(l)
-        return s
+    def simulate_league(self):
+        while self.week < len(self.schedule):
+            self.simulate_week()
+            self.show_league_table()

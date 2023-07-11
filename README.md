@@ -120,7 +120,7 @@ To see the list of all valid team names, you can execute the following command:
 python simulator/scripts/all_teams.py
 ```
 
-Currently simMatch() will simulate the match in its entirety and update the league table. But there are functions that can be used to see the timeline of a match as it happens. In future builds, the user will be able to take charge of a particular team and see the events of any game that he is involved in live.
+Currently simulate_match() will simulate the match in its entirety and update the league table. But there are functions that can be used to see the timeline of a match as it happens. In future builds, the user will be able to take charge of a particular team and see the events of any game that he is involved in live.
 
 ## Supported Leagues
 
