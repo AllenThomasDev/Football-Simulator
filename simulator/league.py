@@ -3,7 +3,7 @@ import pandas as pd
 from fuzzywuzzy import fuzz
 
 import simulator.match as m
-from simulator.constants.odds import *
+import simulator.constants.leagues as scl
 from simulator.team import *
 
 
@@ -13,8 +13,8 @@ class League:
     def __init__(self, option):
         self.players = {}
         self.teams = {}
-        self.leaguename = league_options[League.country[option]]["name"]
-        self.names = league_options[League.country[option]]["teams"]
+        self.leaguename = scl.leagues[League.country[option]]["name"]
+        self.names = scl.leagues[League.country[option]]["teams"]
         self.setTeams()
         self.setPlayers()
         self.schedule = self.create_balanced_round_robin(self.names)

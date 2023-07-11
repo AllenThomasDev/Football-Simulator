@@ -1,4 +1,4 @@
-manager_names = [
+names = [
     "Lucas Merino",
     "Jonas Klavan",
     "James Prödl",

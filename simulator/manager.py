@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-from simulator.constants.managers import manager_names
+import simulator.constants.managers as scm
 
 
 class Manager:
@@ -18,7 +18,7 @@ class Manager:
 
     def __init__(self):
         self.ivs = np.random.randint(1, 6, 3)
-        self.name = manager_names[random.randint(0, 99)]
+        self.name = scm.names[random.randint(0, 99)]
         self.set_stats()
 
     def set_stats(self):
