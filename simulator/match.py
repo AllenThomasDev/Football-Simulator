@@ -97,14 +97,14 @@ class Match:
         self.home_goals = self.stats[self.home_side]["Goal"]
         self.away_goals = self.stats[self.away_side]["Goal"]
         if self.home_goals > self.away_goals:
-            print(f"{self.home_side.team_name} won the match")
+            print(f"{self.home_side.name} won the match")
             print(f"Score {self.home_goals} - {self.away_goals}")
         elif self.away_goals > self.home_goals:
-            print(f"{self.away_side.team_name} won the match")
+            print(f"{self.away_side.name} won the match")
             print(f"Score {self.home_goals} - {self.away_goals}")
         else:
             print(
-                f"The match between {self.home_side.team_name} and {self.away_side.team_name} was a Draw"
+                f"The match between {self.home_side.name} and {self.away_side.name} was a Draw"
             )
             print(f"Score {self.home_goals} - {self.away_goals}")
 
@@ -121,21 +121,7 @@ class Match:
     def getGoals(self):
         return self.home_goals, self.away_goals
 
-    def showStats(self):
-        table = []
-        for stat in list(self.stats[self.home_side].keys()):
-            l = []
-            l.append(stat)
-            for team in [self.home_side, self.away_side]:
-                l.extend([self.stats[team][stat]])
-            table.append(l)
-        print(
-            tabulate(
-                table, headers=["", self.home_side.team_name, self.away_side.team_name]
-            )
-        )
-
     def showEvent(self, e):
         print(
-            str(e.minute) + "'", e.side.team_name, e.event, e.player.stats["short_name"]
+            str(e.minute) + "'", e.side.name, e.event, e.player.name
         )

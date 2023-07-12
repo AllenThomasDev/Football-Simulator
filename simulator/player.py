@@ -1,38 +1,44 @@
-import pandas as pd
-from tabulate import tabulate
-
-
 class Player:
-    facestats = [
-        "short_name",
-        "nationality",
-        "overall",
-        "player_positions",
-        "team_position",
-        "pace",
-        "shooting",
-        "passing",
-        "dribbling",
-        "defending",
-        "physic",
-    ]
+    def __init__(self, df_player):
+        stats = df_player.to_dict()
+        self.name = stats["short_name"]
+        self.nationality = stats["nationality"]
+        self.overall = stats["overall"]
+        self.pace = stats["pace"]
+        self.shooting = stats["shooting"]
+        self.passing = stats["passing"]
+        self.dribbling = stats["dribbling"]
+        self.defending = stats["defending"]
+        self.physic = stats["physic"]
+        self.position = stats["player_positions"]
+        self.set_player_position(stats["player_positions"])
+        self.team_status = "Reserves"
 
-    def __init__(self, row):
-        self.stats = row.to_dict()
-        self.stats["team_position"] = "Reserves"
-        self.setPosition()
+    def set_player_position(self, player_positions):
+        main_position = player_positions.split(",")[0]
+        if "B" in main_position:
+            self.position = "Defender"
+        elif "M" in main_position:
+            self.position = "Midfielder"
+        elif ("S" in main_position) or ("F" in main_position) or ("W" in main_position):
+            self.position = "Attacker"
+        else:
+            self.position = "Goalkeeper"
 
-    def showPlayer(self):
-        temp = pd.DataFrame(self.stats, index=[0])
-        temp = temp.T
-        temp = temp.dropna()
-        print(tabulate(temp))
+    def is_attacker(self):
+        return self.position == "Attacker"
 
-    def setPosition(self):
-        if "B" in self.stats["player_positions"].split(",")[0]:
-            self.stats["player_positions"] = "Defender"
-        if "M" in self.stats["player_positions"].split(",")[0]:
-            self.stats["player_positions"] = "Midfielder"
-        for x in ["S", "F", "W"]:
-            if x in self.stats["player_positions"].split(",")[0]:
-                self.stats["player_positions"] = "Attacker"
+    def is_midfielder(self):
+        return self.position == "Midfielder"
+
+    def is_defender(self):
+        return self.position == "Defender"
+
+    def is_goalkeeper(self):
+        return self.position == "Goalkeeper"
+
+    def set_as_starter(self):
+        return self.position == "Starter"
+
+    def is_starter(self):
+        return self.position == "Starter"

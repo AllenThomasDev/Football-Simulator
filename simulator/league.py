@@ -75,7 +75,7 @@ class League:
         goal_difference = num_winner_goals - num_loser_goals
         if result == "Draw":
             for team in [winner, loser]:
-                table.loc[(table["Club"] == team.team_name)] += [
+                table.loc[(table["Club"] == team.name)] += [
                     "",
                     1,
                     0,
@@ -87,7 +87,7 @@ class League:
                     0,
                 ]
         else:
-            table.loc[(table["Club"] == winner.team_name)] += [
+            table.loc[(table["Club"] == winner.name)] += [
                 "",
                 1,
                 1,
@@ -98,7 +98,7 @@ class League:
                 num_loser_goals,
                 goal_difference,
             ]
-            table.loc[(table["Club"] == loser.team_name)] += [
+            table.loc[(table["Club"] == loser.name)] += [
                 "",
                 1,
                 0,
