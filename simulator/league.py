@@ -68,7 +68,7 @@ class League:
         )
 
     def update_league_table(self, match):
-        (result, winner, loser) = match.Result()
+        (result, winner, loser) = match.evaluate_match_result()
         table = self.standings
         num_winner_goals = match.stats[winner]["Goal"]
         num_loser_goals = match.stats[loser]["Goal"]
@@ -116,7 +116,7 @@ class League:
         home_team = self.teams[home_team_name]
         away_team = self.teams[away_team_name]
         match = Match(home_team, away_team)
-        match.showResult()
+        match.show_match_result()
         self.update_league_table(match)
 
     def simulate_week(self):
