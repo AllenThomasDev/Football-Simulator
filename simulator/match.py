@@ -1,7 +1,7 @@
 import copy
 import random
 
-from simulator.constants.odds import odds
+from simulator.configs.odds import odds
 from simulator.event import Event
 
 

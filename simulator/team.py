@@ -3,7 +3,8 @@ import pandas as pd
 from simulator.player import Player
 from manager import Manager
 
-df_players_data = pd.read_pickle("simulator/resources/player_data")
+df_players_data = pd.read_pickle("simulator/data/player_data")
+
 
 class Team:
     def __init__(self, team_name):
@@ -36,14 +37,14 @@ class Team:
         self.goalkeepers = [
             player for player in self.players.values() if player.is_goalkeeper()
         ]
-        self.attack = sum(player.overall for player in self.attackers) / len(
+        self.attack = sum(player.overall for player in self.attackers) // len(
             self.attackers
         )
         self.defence = (
             sum(player.overall for player in self.defenders)
             + sum(player.overall for player in self.goalkeepers)
-        ) / (len(self.defenders) + len(self.goalkeepers))
-        self.midfield = sum(player.overall for player in self.midfielders) / len(
+        ) // (len(self.defenders) + len(self.goalkeepers))
+        self.midfield = sum(player.overall for player in self.midfielders) // len(
             self.midfielders
         )
 

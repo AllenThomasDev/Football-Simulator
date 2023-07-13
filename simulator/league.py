@@ -3,10 +3,22 @@ from tabulate import tabulate
 
 from simulator.match import Match
 from simulator.team import Team
-import simulator.constants.leagues as scl
+import simulator.configs.league as scl
 
 
 class League:
+    LEAGUE_TABLE_ATTRIBUTES = [
+        "Club",
+        "Matches Played",
+        "Wins",
+        "Draws",
+        "Losses",
+        "Points",
+        "GF",
+        "GA",
+        "GD",
+    ]
+
     def __init__(self, option):
         self.week = 0
         self.name = scl.leagues[scl.countries[option]]["name"]
@@ -51,11 +63,11 @@ class League:
         return schedule
 
     def init_league_table(self):
-        table = pd.DataFrame(columns=scl.league_table_columns)
+        table = pd.DataFrame(columns=League.LEAGUE_TABLE_ATTRIBUTES)
         for team in self.team_names:
             row = pd.DataFrame(
                 [[team, 0, 0, 0, 0, 0, 0, 0, 0]],
-                columns=scl.league_table_columns,
+                columns=League.LEAGUE_TABLE_ATTRIBUTES,
             )
             table = pd.concat([table, row])
         table = table.reset_index(drop=True)
@@ -109,7 +121,7 @@ class League:
                 num_winner_goals,
                 -goal_difference,
             ]
-        table.sort_values(by='Points', inplace=True, ascending=False)
+        table.sort_values(by="Points", inplace=True, ascending=False)
         table.reset_index(drop=True, inplace=True)
 
     def simulate_match(self, home_team_name, away_team_name):

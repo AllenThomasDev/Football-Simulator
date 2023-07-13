@@ -36,9 +36,9 @@ cd Football-Simulator
 python -m venv .venv
 
 # For activation use one of the following commands based on your OS:
-source env/bin/activate   # On Mac / Linux
-env/Scripts/activate.bat  # In Windows CMD
-env/Scripts/Activate.ps1  # In Windows Powershel
+source .venv/bin/activate   # On Mac / Linux
+.venv\Scripts\activate.bat  # In Windows CMD
+.venv\Scripts\Activate.ps1  # In Windows Powershel
 ```
 
 4. Install the required packages from the `requirements.txt` file:
@@ -51,7 +51,9 @@ pip install -r requirements.txt
 
 ## How does it work
 
-The simulator employs a probabilistic approach to simulate match events. The probabilities of different events occurring in a match are calculated minute by minute. These probabilities are then scaled based on the strengths of the teams, and the match is simulated.
+The simulator employs a probabilistic approach to simulate match events.
+The probabilities of different events occurring in a match are calculated minute by minute.
+These probabilities are then scaled based on the strengths of the teams, and the match is simulated.
 
 For example, the probabilities of different events for the 72nd minute:
 
@@ -109,17 +111,6 @@ leagues = {
    ...
 ```
 
-You can also create a custom league (like UCL) by picking different teams from all the available leagues.
-There is no theoretical limit to the number of teams, but try to limit the number of teams to 100 and ideally try to have an even number of teams.
-
-To make this work you will have to edit `constants/leagues.py` and add your league in it.
-Ensure that you use the correct team name. For example, 'Man Utd' will not work , you will have to use 'Manchester United' because that is how it is stored.
-To see the list of all valid team names, you can execute the following command:
-
-```bash
-python simulator/scripts/all_teams.py
-```
-
 Currently simulate_match() will simulate the match in its entirety and update the league table. But there are functions that can be used to see the timeline of a match as it happens. In future builds, the user will be able to take charge of a particular team and see the events of any game that he is involved in live.
 
 ## Supported Leagues
@@ -131,6 +122,14 @@ Top 5 Leagues are natively supported:
 * Seria A
 * Bundesliga
 * Ligue 1
+
+You can also create a custom league (like UCL) by picking different teams from all the available leagues.
+There is no theoretical limit to the number of teams, but try to limit the number of teams to 100 and ideally try to have an even number of teams. To make this work you will have to edit `constants/leagues.py` and add your league in it. Ensure that you use the correct team name. For example, 'Man Utd' will not work , you will have to use 'Manchester United' because that is how it is stored.
+
+To see the list of all valid team names, you can execute the following command:
+```bash
+python simulator/scripts/all_teams.py
+```
 
 ## Sample Output
 

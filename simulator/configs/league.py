@@ -125,15 +125,3 @@ leagues = {
         ],
     },
 }
-
-league_table_columns = [
-    "Club",
-    "Matches Played",
-    "Wins",
-    "Draws",
-    "Losses",
-    "Points",
-    "GF",
-    "GA",
-    "GD",
-]
