@@ -1,3 +1,5 @@
+countries = {1: "spain", 2: "england", 3: "germany", 4: "italy", 5: "france"}
+
 leagues = {
     "spain": {
         "name": "La Liga Santander",

@@ -28,4 +28,4 @@ def run():
     print(welcome_message)
     league_no = get_league_input()
     league = League(league_no)
-    league.simLeague()
+    league.simulate_league()
