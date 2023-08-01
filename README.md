@@ -1,7 +1,7 @@
 # Football-League-Simulator
 
 This Python project enables you to simulate various football leagues from around the world using FIFA 20 stats.
-The simulator runs week-by-week simulations of matches between all teams in the selected league, resulting in a final output that look something like this:
+The simulator runs week-by-week simulations of matches between all teams in the selected league, resulting in a final output that looks something like this:
 
 |    | Club          |   Matches Played |   Wins |   Draws |   Losses |   Points |   GF |   GA |   GD |
 |----|---------------|------------------|--------|---------|----------|----------|------|------|------|
@@ -17,7 +17,7 @@ The simulator runs week-by-week simulations of matches between all teams in the 
 
 To run this simulator locally, you need to perform the following steps:
 
-1. Clone this repositor on your local machine:
+1. Clone this repository on your local machine:
 
 ```bash
 git clone https://github.com/AllenThomasDev/Football-Simulator.git
@@ -38,7 +38,7 @@ python -m venv .venv
 # For activation use one of the following commands based on your OS:
 source .venv/bin/activate   # On Mac / Linux
 .venv\Scripts\activate.bat  # In Windows CMD
-.venv\Scripts\Activate.ps1  # In Windows Powershel
+.venv\Scripts\Activate.ps1  # In Windows PowerShell
 ```
 
 4. Install the required packages from the `requirements.txt` file:
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 
 The simulator employs a probabilistic approach to simulate match events.
 The probabilities of different events occurring in a match are calculated minute by minute.
-These probabilities are then scaled based on the strengths of the teams, and the match is simulated.
+These probabilities are then scaled based on the teams' strengths, and the match is simulated.
 
 For example, the probabilities of different events for the 72nd minute:
 
@@ -111,7 +111,7 @@ leagues = {
    ...
 ```
 
-Currently simulate_match() will simulate the match in its entirety and update the league table. But there are functions that can be used to see the timeline of a match as it happens. In future builds, the user will be able to take charge of a particular team and see the events of any game that he is involved in live.
+Currently, simulate_match() will simulate the match in its entirety and update the league table. But there are functions that can be used to see the timeline of a match as it happens. In future builds the user will be able to take charge of a particular team and see the events of any game that he is involved in live.
 
 ## Supported Leagues
 
@@ -124,7 +124,7 @@ Top 5 Leagues are natively supported:
 * Ligue 1
 
 You can also create a custom league (like UCL) by picking different teams from all the available leagues.
-There is no theoretical limit to the number of teams, but try to limit the number of teams to 100 and ideally try to have an even number of teams. To make this work you will have to edit `constants/leagues.py` and add your league in it. Ensure that you use the correct team name. For example, 'Man Utd' will not work , you will have to use 'Manchester United' because that is how it is stored.
+There is no theoretical limit to the number of teams, but try to limit the number of teams to 100 and ideally try to have an even number of teams. To make this work you will have to edit `constants/leagues.py` and add your league to it. Ensure that you use the correct team name. For example, 'Man Utd' will not work, you will have to use 'Manchester United' because that is how it is stored.
 
 To see the list of all valid team names, you can execute the following command:
 ```bash
@@ -139,5 +139,5 @@ Following is the output of a fully simulated league:
 
 ## Feedback and Support
 
-Please feel free to play around with the code and let me know if you find any issues or you need some help with certain functions.</br>
+Please feel free to play around with the code and let me know if you find any issues or if you need some help with certain functions.</br>
 You can contact me at <allen.thomas.dev@gmail.com>
